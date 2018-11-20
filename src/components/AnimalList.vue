@@ -79,7 +79,7 @@ const sectors = [
 export default {
     data(){
         return { 
-        sectors: sectors,
+        sectors: sectors, // preslikamo konstantu sektors u sektors unutar date
         
         newAnimal: { },
 
