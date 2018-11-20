@@ -1,5 +1,18 @@
 <template>
     <div>
+        <h2> Add Animal </h2>
+        <form @submit.prevent="addAnimal">
+            <label>Name</label>
+            <input v-model="newAnimal.name" placeholder="Name"> <br/>
+
+            <label>Species</label>
+            <input v-model="newAnimal.species" placeholder="Species"> <br/>
+
+            <label>Date Of Birth</label>
+            <input v-model="newAnimal.date" placeholder="Date Of Birth"><br/>
+            <button type="submit">Add Animal</button>
+        </form>
+
         <h1> Animal List </h1>
         <table border=1>
             <thead>
@@ -15,10 +28,10 @@
                 <td>{{animal.species}}</td>
                 <td>{{animal.date ? animal.date: 'Nepostoji'}}</td>
                 <td>
-                    <button @click="removeAnimal(animal)"> Remove </button>
+                    <button @click="removeAnimal(animal)" type="submit"> Remove </button>
                 </td>
                 <td>
-                    <button @click="moveToTop(animal)"> Move to top </button>
+                    <button @click="moveToTop(animal)" type="submit"> Move to top </button>
                 </td>
                 </tr>
             </tbody>
@@ -32,6 +45,12 @@
 export default {
     data(){
         return { 
+        newAnimal: {
+            species: '',
+            name: '',
+            date: ''
+            },
+
         animals: [
             {name: 'Cicko', species: 'Pas', date: '20/10/2015'},
             {name: 'Hulk', species: 'Zec'},
@@ -53,9 +72,14 @@ export default {
 
             this.animals.unshift(animal);
            
-        }
+        },
+         addAnimal() {
+            this.animals.push(this.newAnimal);
+            this.newAnimal = {};
     }
     
-};
+}
+}
+
 </script>
 
