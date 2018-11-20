@@ -44,6 +44,24 @@
                 </tr>
             </tbody>
         </table>
+        <table border=1>
+            <thead>
+                <th>Redni broj</th>
+                <th>Sectors</th>
+                <th> Animal List</th>
+            </thead>
+            <tbody>
+                <tr v-for="(sector, red) in sectors" :key="red">
+                <td>{{ red + 1}}</td>
+                <td>{{ sector.name}}</td>
+                <td>
+                    <button @click="showAnimals(sector)" type="submit"> List of animals</button>  
+                </td>
+
+                </tr>
+            </tbody>
+
+        </table>
     </div>
 </template>
 
@@ -91,6 +109,16 @@ export default {
          addAnimal() {
             this.animals.push(this.newAnimal);
             this.newAnimal = {};
+    },
+    showAnimals (sector){
+        let animals = []
+        this.animals.forEach((currentAnimal) => {
+            if(currentAnimal.sector == sector){
+                animals.push(currentAnimal.name);
+            }
+        });
+    alert(animals);
+
     }
     
 }
